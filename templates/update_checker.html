@@ -1,18 +1,11 @@
 {% extends 'nonavbase.html' %}
 {% block content %}
-{% if need_update == 'False' %}
 
-<div style="height:30vh;text-align:center;" hx-get="/update_checker?status=check" hx-swap="innerHTML" hx-trigger="load" hx-target="body"></div>
-<div style="text-align:center;height:90px">업데이트 체크중..</div>
-<div class="loader"></div>
-
-{% elif need_update == 'True' %}
+{% if need_update == 'True' %}
 
 <div style="height:30vh;text-align:center;"></div>
 <div style="text-align:center;height:90px">새로운 업데이트가 발견되었습니다. <br>
-  현재버전 : {{ currentVersion }}<br>
-  업데이트 버전 : {{ result }}<br>확인을 누르시면 업데이트를 진행합니다.<br>
-  <button class="update-btn" hx-get="/update_checker?status=download" hx-swap="innerHTML" hx-target="body">확인</button>
+  <button class="update-btn" hx-get="/update_checker" hx-swap="innerHTML" hx-target="body">업데이트 하기</button>
   <br><br>만약, 업데이트 문제 발생시 아래 설치파일을 수동으로 받고 재설치해주세요.<br>
   기존 마진가이드는 지우지 마시고, 그대로 설치하시면 기존 데이터가 계속 보전됩니다.<br>
   <a href="https://github.com/marginguide/marginguide/raw/refs/heads/main/MarginGuide_Setup.zip" target="_blank">수동 업그레이 파일 다운로드 받기</a>
@@ -22,7 +15,7 @@
 
 <div style="height:30vh;text-align:center;" hx-get="/download_update_flie" hx-swap="innerHTML" hx-trigger="load" hx-target="body"></div>
   <div style="text-align:center;height:90px">
-    업데이트 파일을 다운로드 중입니다.<br>다운로드가 완료되면 윈도우 설치창이 시작됩니다.(기존 데이터는 보전됩니다)<br><br>
+    업데이트 파일을 다운로드 중입니다.<br>다운로드가 완료되면 자동으로 마진가이드가 재시작합니다.<br><br>
     <div class="loader"></div> <br><br>
     <br><br>만약, 업데이트 문제 발생시 아래 설치파일을 수동으로 받고 재설치해주세요.<br>
     기존 마진가이드는 지우지 마시고, 그대로 설치하시면 기존 데이터가 계속 보전됩니다.<br>
@@ -34,9 +27,8 @@
 
 <div style="height:30vh;text-align:center;"></div>
 <div style="text-align:center;height:90px">업데이트 파일 다운로드에 실패했습니다.<br>
-  현재버전 : {{ currentVersion }}<br>
-  업데이트 버전 : {{ result }}<br>다시 시도해 주세요. 지속적으로 실패시 관리자에게 문의주세요.<br>
-  <button class="update-btn" hx-get="/update_checker?status=download" hx-swap="innerHTML" hx-target="body">확인</button>
+  <br>다시 시도해 주세요. 지속적으로 실패시 관리자에게 문의주세요.<br>
+  <button class="update-btn" hx-get="/update_checker" hx-swap="innerHTML" hx-target="body">업데이트 하기</button>
   <br><br>만약, 업데이트 문제 발생시 아래 설치파일을 수동으로 받고 재설치해주세요.<br>
   기존 마진가이드는 지우지 마시고, 그대로 설치하시면 기존 데이터가 계속 보전됩니다.<br>
   <a href="https://github.com/marginguide/marginguide/raw/refs/heads/main/MarginGuide_Setup.zip" target="_blank">수동 업그레이 파일 다운로드 받기</a>
